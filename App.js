@@ -1,31 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React from 'react';
+import React from "react";
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+    SafeAreaView,
+    StyleSheet,
+    View,
+    Text,
+    StatusBar
+} from "react-native";
 
-const App = () => {
-  return (
+const App = () => (
     <>
-      <SafeAreaView>
-        <Text>Test</Text>
-      </SafeAreaView>
+        <SafeAreaView >
+            <Text >Test</Text>
+        </SafeAreaView>
     </>
-  );
-};
+);
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    RenderName: {
+        height: 100
+    },
+    header: {
+        width: 100
+    }
+});
 
 export default App;
