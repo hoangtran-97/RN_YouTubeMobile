@@ -5,7 +5,7 @@ const channels = [{
     id: 1,
     name: "Meme Radar",
     icon: "https://neverthink.tv/assets/images/63e3939725b3d92af5e7b8429a0f4d57e6be661abf380b39348f360e528dd6e2.png",
-    playlist: ["QSqIG5Dl-SM", "Km8kIX-8hVs", "c9EOCt9kkUo", "85RhW75xM8U", "URLyBDYHoGo", "jM0GePXOdT0", "exLTGu_c5fs", "-goTfMUabxc", "y7pZzp99Jgs"]
+    playlist: ["QSqIG5Dl-SM", "Km8kIX-8hVs", "85RhW75xM8U", "URLyBDYHoGo", "jM0GePXOdT0", "exLTGu_c5fs", "-goTfMUabxc", "y7pZzp99Jgs"]
 },
 {
     id: 2,
@@ -17,7 +17,7 @@ const channels = [{
     id: 3,
     name: "WTF",
     icon: "https://neverthink.tv/assets/images/fde01ee47dc02d83892c35c22f2efd81f52c37edc4f3651be40094a115c812fd.png",
-    playlist: ["FOH3ZOMBwhY", "ErfEnD2WA3A", "JZnlJ2upJv8", "Km8kIX-8hVs"]
+    playlist: ["ppboaxC8vWA", "5Cd4Ify3rnM", "Rm8K0LfBRbA"]
 }];
 
 class Dashboard extends Component {

@@ -7,14 +7,17 @@ import {
 import Dashboard from "./src/containers/Dashboard/index";
 import colors from "./src/constants/colors";
 
-const App = () => (
-    <>
-        <StatusBar barStyle="light-content" />
-        <SafeAreaView style={styles.container}>
-            <Dashboard />
-        </SafeAreaView>
-    </>
-);
+const App = () => {
+    console.disableYellowBox = true;
+    return (
+        <>
+            <StatusBar barStyle="light-content" />
+            <SafeAreaView style={styles.container}>
+                <Dashboard />
+            </SafeAreaView>
+        </>
+    )
+};
 
 const styles = StyleSheet.create({
     container: {

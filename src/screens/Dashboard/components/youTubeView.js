@@ -2,10 +2,12 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import YouTube from "react-native-youtube";
 
-const YouTubeView = () => (
+const YouTubeView = ({ playing }) => (
     <>
         <YouTube
-            videoId="KVZ-P-ZI6W4" // The YouTube video ID
+            videoIds={playing}
+            play
+            loop
             style={styles.youTubeView}
         />
     </>

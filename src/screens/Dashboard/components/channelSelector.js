@@ -8,7 +8,9 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../../../constants/colors";
 
 const AnimatedView = animated(View);
-const ChannelSelector = ({ data, channel, setChannel }) => {
+const ChannelSelector = ({
+    data, channel, setChannel, setPlaying
+}) => {
     const [collapse, setCollapse] = useState(false);
 
     const animation = useSpring({
@@ -30,7 +32,7 @@ const ChannelSelector = ({ data, channel, setChannel }) => {
                 />
                 <Text style={styles.text}>{channel.name}</Text>
                 <Icon
-                    name="caret-down"
+                    name={!collapse ? "caret-down" : "caret-up"}
                     color={colors.text}
                     size={25}
                 />
@@ -43,6 +45,7 @@ const ChannelSelector = ({ data, channel, setChannel }) => {
                             style={styles.buttonChannelItem}
                             onPress={() => {
                                 setChannel(item);
+                                setPlaying(item.playlist);
                                 setCollapse(!collapse);
                             }}
                         >
