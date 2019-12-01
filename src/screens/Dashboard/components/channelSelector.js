@@ -8,14 +8,9 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../../../constants/colors";
 
 const AnimatedView = animated(View);
-const ChannelSelector = ({ data }) => {
-    const [collapse, setCollapse] = useState(true);
-    const [channel, setChannel] = useState({
-        id: 1,
-        name: "Meme Radar",
-        icon: "https://neverthink.tv/assets/images/63e3939725b3d92af5e7b8429a0f4d57e6be661abf380b39348f360e528dd6e2.png",
-        playlist: ["QSqIG5Dl-SM", "Km8kIX-8hVs", "c9EOCt9kkUo", "85RhW75xM8U", "URLyBDYHoGo", "jM0GePXOdT0", "exLTGu_c5fs", "-goTfMUabxc", "y7pZzp99Jgs"]
-    });
+const ChannelSelector = ({ data, channel, setChannel }) => {
+    const [collapse, setCollapse] = useState(false);
+
     const animation = useSpring({
         height: !collapse ? 0 : 300,
         config: {
