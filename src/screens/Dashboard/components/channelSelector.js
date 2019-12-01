@@ -53,7 +53,7 @@ const ChannelSelector = ({ data, channel, setChannel }) => {
                             <Text style={styles.text}>{item.name}</Text>
                         </TouchableOpacity>
                     )}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item, index) => index.toString()}
                 />
             </AnimatedView>
         </>

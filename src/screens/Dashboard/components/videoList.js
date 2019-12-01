@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    View, Text, StyleSheet, FlatList, SafeAreaView
+    Text, StyleSheet, FlatList
 } from "react-native";
 import { Thumbnail } from "react-native-thumbnail-video";
 import colors from "../../../constants/colors";
@@ -8,7 +8,7 @@ import colors from "../../../constants/colors";
 const VideoList = ({ channel }) => {
     const { playlist } = channel;
     return (
-        <View>
+        <>
             <Text style={styles.text}>filename</Text>
             <FlatList
                 data={playlist}
@@ -18,13 +18,12 @@ const VideoList = ({ channel }) => {
                         showPlayIcon={false}
                         imageWidth={100}
                         imageHeight={100}
+                        onPress={() => console.log("test")}
                     />
                 )}
-                keyExtractor={(item) => item.id}
-
+                keyExtractor={(item, index) => index.toString()}
             />
-
-        </View>
+        </>
     );
 };
 const styles = StyleSheet.create({
