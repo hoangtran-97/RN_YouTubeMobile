@@ -1,61 +1,96 @@
 import React, { useState } from "react";
 import {
-    Text, StyleSheet, Image, FlatList, View, TouchableOpacity
+    View, Text, StyleSheet, TouchableOpacity, FlatList, Image
 } from "react-native";
-import { animated, useSpring } from "react-spring";
+import { useSpring, animated } from "react-spring";
 import BezierEasing from "bezier-easing";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/FontAwesome";
+import colors from "../../../constants/colors";
 
 const AnimatedView = animated(View);
-
 const ChannelSelector = ({ data }) => {
-    const animation = useSpring({
-        backgroundColor: "green",
-        height: collapse ? 0 : 200,
+    const [collapse, setCollapse] = useState(true);
+    const [channel, setChannel] = useState({
+        id: 1,
+        name: "Meme Radar",
+        icon: "https://neverthink.tv/assets/images/63e3939725b3d92af5e7b8429a0f4d57e6be661abf380b39348f360e528dd6e2.png",
+        playlist: ["QSqIG5Dl-SM", "Km8kIX-8hVs", "c9EOCt9kkUo", "85RhW75xM8U", "URLyBDYHoGo", "jM0GePXOdT0", "exLTGu_c5fs", "-goTfMUabxc", "y7pZzp99Jgs"]
     });
-    const [collapse, setCollapse] = useState(false);
+    const animation = useSpring({
+        height: !collapse ? 0 : 300,
+        config: {
+            duration: collapse ? 300 : 250,
+            easing: BezierEasing(0.4, 0, 0.2, 1)
+        }
+    });
     return (
         <>
             <TouchableOpacity
-                style={styles.buttonChannel}
-                onPress={() => {
-                    setCollapse(!collapse);
-                    console.log(collapse);
-                }}
+                style={styles.buttonChannelSelector}
+                onPress={() => setCollapse(!collapse)}
             >
-                <Text>ChannelName</Text>
+                <Image
+                    style={styles.image}
+                    source={{ uri: channel.icon }}
+                />
+                <Text style={styles.text}>{channel.name}</Text>
                 <Icon
-                    name="plus"
-                    backgroundColor="#3b5998"
-                    size={20}
+                    name="caret-down"
+                    color={colors.text}
+                    size={25}
                 />
             </TouchableOpacity>
             <AnimatedView style={animation}>
-                <Text>Test</Text>
+                <FlatList
+                    data={data}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            style={styles.buttonChannelItem}
+                            onPress={() => {
+                                setChannel(item);
+                                setCollapse(!collapse);
+                            }}
+                        >
+                            <Image
+                                style={styles.image}
+                                source={{ uri: item.icon }}
+                            />
+                            <Text style={styles.text}>{item.name}</Text>
+                        </TouchableOpacity>
+                    )}
+                    keyExtractor={(item) => item.id}
+                />
             </AnimatedView>
-            <FlatList
-                data={data}
-                renderItem={({ item }) => (
-                    <>
-                        <Image
-                            style={{ width: 50, height: 50 }}
-                            source={{ uri: item.icon }}
-                        />
-                        <Text>{item.name}</Text>
-                    </>
-                )}
-                keyExtractor={(item) => item.id}
-            />
         </>
     );
 };
 const styles = StyleSheet.create({
-    buttonChannel: {
+    buttonChannelItem: {
         alignItems: "center",
-        backgroundColor: "red",
+        backgroundColor: colors.sub,
+        borderRadius: 5,
         flexDirection: "row",
         height: 70,
-        justifyContent: "space-around"
+        justifyContent: "space-between",
+        marginTop: 5,
+        paddingHorizontal: 10
+    },
+    buttonChannelSelector: {
+        alignItems: "center",
+        backgroundColor: colors.sub,
+        borderRadius: 5,
+        flexDirection: "row",
+        height: 70,
+        justifyContent: "space-around",
+        marginTop: 5
+    },
+    image: {
+        height: 40, width: 40
+    },
+    text: {
+        color: colors.text,
+        fontSize: 16,
+        fontWeight: "700"
     }
 });
 export default ChannelSelector;
