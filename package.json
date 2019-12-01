@@ -16,13 +16,16 @@
     "ANDY": "react-native run-android"
   },
   "dependencies": {
+    "bezier-easing": "^2.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
-    "react-native-youtube": "^2.0.0"
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-youtube": "^2.0.0",
+    "react-spring": "^8.0.27"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
