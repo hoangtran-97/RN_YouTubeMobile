@@ -2,25 +2,22 @@ import React from "react";
 import {
     SafeAreaView,
     StyleSheet,
-    View,
-    Text,
-    StatusBar
 } from "react-native";
+import Dashboard from "./src/containers/Dashboard/index";
+import colors from "./src/constants/colors";
 
 const App = () => (
     <>
-        <SafeAreaView >
-            <Text >Test</Text>
+        <SafeAreaView style={styles.container}>
+            <Dashboard />
         </SafeAreaView>
     </>
 );
 
 const styles = StyleSheet.create({
-    RenderName: {
-        height: 100
-    },
-    header: {
-        width: 100
+    container: {
+        backgroundColor: colors.main,
+        flex: 1
     }
 });
 

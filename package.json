@@ -7,7 +7,13 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "7PLUS": "react-native run-ios --simulator \"iPhone 7 Plus\"",
+    "X": "react-native run-ios --simulator \"iPhone 11\"",
+    "IPAD": "react-native run-ios --simulator \"iPad Air\"",
+    "XSMAX": "react-native run-ios --simulator \"iPhone Xs Max\"",
+    "5S": "react-native run-ios --simulator \"iPhone 5s\"",
+    "ANDY": "react-native run-android"
   },
   "dependencies": {
     "eslint-config-airbnb": "^18.0.1",
@@ -15,7 +21,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "react": "16.9.0",
-    "react-native": "0.61.5"
+    "react-native": "0.61.5",
+    "react-native-youtube": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
