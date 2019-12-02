@@ -7,7 +7,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../../../constants/colors";
 
 const VideoList = ({
-    channel, watched, setCurrentIndex
+    channel, watched
 }) => {
     const { playlist, name } = channel;
     return (
@@ -21,6 +21,7 @@ const VideoList = ({
                 extraData={watched}
                 data={playlist}
                 renderItem={({ item, index }) => (
+
                     <View style={styles.itemContainer}>
                         <Thumbnail
                             url={`https://www.youtube.com/watch?v=${item}`}
@@ -28,11 +29,10 @@ const VideoList = ({
                             imageWidth={200}
                             imageHeight={150}
                             onPress={() => {
-                                setCurrentIndex(index);
                                 playVideoAtIndex(index);
                             }}
                         />
-                        <Icon name="eye" size={20} color={watched.includes(item) ? colors.text : colors.main} />
+                        <Icon name="eye" size={30} color={watched.includes(item) ? colors.text : colors.main} />
                     </View>
                 )}
                 keyExtractor={(index) => index.toString()}
@@ -43,12 +43,14 @@ const VideoList = ({
 const styles = StyleSheet.create({
     container: {
         paddingBottom: 500,
-        paddingHorizontal: 20
     },
     itemContainer: {
         alignItems: "center",
+        backgroundColor: colors.main,
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-between",
+        marginBottom: 5,
+        padding: 10
     },
     text: {
         color: colors.text,

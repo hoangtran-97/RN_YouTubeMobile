@@ -9,7 +9,7 @@ import colors from "../../../constants/colors";
 
 const AnimatedView = animated(View);
 const ChannelSelector = ({
-    data, channel, setChannel, setPlaying
+    data, channel, setChannel, setPlaying, setWatched
 }) => {
     const [collapse, setCollapse] = useState(false);
 
@@ -58,6 +58,9 @@ const ChannelSelector = ({
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
+                <TouchableOpacity onPress={() => setWatched([])}>
+                    <Text style={styles.buttonReset}>Reset watched videos</Text>
+                </TouchableOpacity>
             </AnimatedView>
         </>
     );
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
         height: 70,
         justifyContent: "space-between",
         marginTop: 5,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
     },
     buttonChannelSelector: {
         alignItems: "center",
@@ -82,6 +85,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         marginTop: 5
     },
+    buttonReset: { alignSelf: "center", color: colors.highlight, marginBottom: 10 },
     image: {
         height: 40, width: 40
     },

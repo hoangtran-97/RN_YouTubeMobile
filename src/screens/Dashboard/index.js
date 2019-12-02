@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-    StyleSheet, View
+    StyleSheet, View,
 } from "react-native";
 import YouTube from "react-native-youtube";
 import ChannelSelector from "./components/channelSelector";
@@ -10,8 +10,8 @@ const DashboardScreen = ({ data }) => {
     const youTubeRef = React.createRef();
     const [channel, setChannel] = useState(data[0]);
     const [playing, setPlaying] = useState(channel.playlist);
-    const [currentIndex, setCurrentIndex] = useState();
     const [watched, setWatched] = useState([]);
+    const [userDidPause, setUserDidPause] = useState(false);
     playVideoAtIndex = (index) => {
         youTubeRef.current.playVideoAt(index);
     };
@@ -26,15 +26,22 @@ const DashboardScreen = ({ data }) => {
             <YouTube
                 ref={youTubeRef}
                 videoIds={playing}
-                play
+                // play
                 loop
                 style={styles.youTubeView}
                 onChangeState={(e) => {
-                    e.state === "playing" ? (
-                        youTubeRef.current.getVideosIndex().then((videosIndex) => {
-                            addToWatched(videosIndex);
-                        })
-                    ) : console.log(watched);
+                    e.state === "paused" ? setUserDidPause(true) : (
+                        e.state === "playing" ? (
+                            setUserDidPause(false),
+                            youTubeRef.current.getVideosIndex().then((videosIndex) => {
+                                watched.indexOf(playing[videosIndex]) === -1
+                                    ? addToWatched(videosIndex)
+                                    : youTubeRef.current.nextVideo();
+                            }).catch((error) => {
+                                console.log(error);
+                            })
+                        ) : null
+                    );
                 }}
             />
             <View style={styles.container}>
@@ -43,11 +50,11 @@ const DashboardScreen = ({ data }) => {
                     channel={channel}
                     setChannel={setChannel}
                     setPlaying={setPlaying}
+                    setWatched={setWatched}
                 />
                 <VideoList
                     channel={channel}
                     watched={watched}
-                    setCurrentIndex={setCurrentIndex}
                     playVideoAtIndex={playVideoAtIndex}
                 />
             </View>
