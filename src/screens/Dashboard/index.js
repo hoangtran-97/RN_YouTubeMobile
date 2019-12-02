@@ -26,7 +26,7 @@ const DashboardScreen = ({ data }) => {
             <YouTube
                 ref={youTubeRef}
                 videoIds={playing}
-                // play
+                play
                 loop
                 style={styles.youTubeView}
                 onChangeState={(e) => {
