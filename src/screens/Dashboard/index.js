@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-    StyleSheet, View,
+    StyleSheet, View
 } from "react-native";
 import YouTube from "react-native-youtube";
 import ChannelSelector from "./components/channelSelector";
@@ -12,6 +12,7 @@ const DashboardScreen = ({ data }) => {
     const [playing, setPlaying] = useState(channel.playlist);
     const [watched, setWatched] = useState([]);
     const [userDidPause, setUserDidPause] = useState(false);
+
     playVideoAtIndex = (index) => {
         youTubeRef.current.playVideoAt(index);
     };
@@ -21,6 +22,7 @@ const DashboardScreen = ({ data }) => {
         newWatched.indexOf(videoId) === -1 ? newWatched.push(videoId) : null;
         setWatched([...newWatched]);
     };
+
     return (
         <>
             <YouTube

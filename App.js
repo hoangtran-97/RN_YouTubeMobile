@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import {
     SafeAreaView,
     StyleSheet,
-    StatusBar
+    StatusBar,
 } from "react-native";
 import SplashScreen from "react-native-splash-screen";
 import Dashboard from "./src/containers/Dashboard/index";
@@ -13,6 +13,7 @@ const App = () => {
     useEffect(() => {
         SplashScreen.hide();
     });
+
     return (
         <>
             <StatusBar barStyle="light-content" />
