@@ -7,11 +7,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import colors from "../../../constants/colors";
 
 const VideoList = ({
-    channel, watched
+    channel, watched, isPortrait, playVideoAtIndex
 }) => {
     const { playlist, name } = channel;
     return (
-        <View style={styles.container}>
+        <View style={isPortrait ? styles.containerPortrait : styles.containerLandscape}>
             <Text style={styles.text}>
                 More from
                 {" "}
@@ -32,7 +32,7 @@ const VideoList = ({
                                 playVideoAtIndex(index);
                             }}
                         />
-                        <Icon name="eye" size={30} color={watched.includes(item) ? colors.text : colors.main} />
+                        <Icon name="eye" size={isPortrait ? 30 : 20} color={watched.includes(item) ? colors.text : colors.main} />
                     </View>
                 )}
                 keyExtractor={(index) => index.toString()}
@@ -41,8 +41,11 @@ const VideoList = ({
     );
 };
 const styles = StyleSheet.create({
-    container: {
-        paddingBottom: 500,
+    containerLandscape: {
+        paddingBottom: 200,
+    },
+    containerPortrait: {
+        paddingBottom: 300,
     },
     itemContainer: {
         alignItems: "center",
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         marginBottom: 5,
-        padding: 10
+        padding: 5
     },
     text: {
         color: colors.text,

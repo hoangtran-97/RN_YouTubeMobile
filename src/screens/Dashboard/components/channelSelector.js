@@ -58,7 +58,11 @@ const ChannelSelector = ({
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                <TouchableOpacity onPress={() => setWatched([])}>
+                <TouchableOpacity onPress={() => {
+                    setWatched([]);
+                    setCollapse(!collapse);
+                }}
+                >
                     <Text style={styles.buttonReset}>Reset watched videos</Text>
                 </TouchableOpacity>
             </AnimatedView>

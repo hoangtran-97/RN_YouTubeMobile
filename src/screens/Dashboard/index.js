@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-    StyleSheet, View
+    StyleSheet, View, Dimensions
 } from "react-native";
 import YouTube from "react-native-youtube";
 import ChannelSelector from "./components/channelSelector";
@@ -12,7 +12,8 @@ const DashboardScreen = ({ data }) => {
     const [playing, setPlaying] = useState(channel.playlist);
     const [watched, setWatched] = useState([]);
     const [userDidPause, setUserDidPause] = useState(false);
-
+    const [isPortrait, setIsPortrait] = useState(true);
+    const { width, height } = Dimensions.get("window");
     playVideoAtIndex = (index) => {
         youTubeRef.current.playVideoAt(index);
     };
@@ -22,15 +23,39 @@ const DashboardScreen = ({ data }) => {
         newWatched.indexOf(videoId) === -1 ? newWatched.push(videoId) : null;
         setWatched([...newWatched]);
     };
-
+    onLayout = (e) => {
+        const { width, height } = Dimensions.get("window");
+        width > height ? setIsPortrait(false) : setIsPortrait(true);
+    };
+    const styles = StyleSheet.create({
+        containerChannelVideo: {
+            paddingHorizontal: 10
+        },
+        containerLandscape: {
+            alignItems: "flex-start",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%"
+        },
+        containerPortrait: {
+            flexDirection: "column"
+        },
+        youtubeLandscape: {
+            flex: 1,
+            height
+        },
+        youtubePortrait: {
+            alignSelf: "stretch", height: 300
+        }
+    });
     return (
-        <>
+        <View onLayout={onLayout} style={isPortrait ? styles.containerPortrait : styles.containerLandscape}>
             <YouTube
                 ref={youTubeRef}
                 videoIds={playing}
                 play
                 loop
-                style={styles.youTubeView}
+                style={isPortrait ? styles.youtubePortrait : styles.youtubeLandscape}
                 onChangeState={(e) => {
                     e.state === "paused" ? setUserDidPause(true) : (
                         e.state === "playing" ? (
@@ -46,7 +71,7 @@ const DashboardScreen = ({ data }) => {
                     );
                 }}
             />
-            <View style={styles.container}>
+            <View style={styles.containerChannelVideo}>
                 <ChannelSelector
                     data={data}
                     channel={channel}
@@ -58,17 +83,11 @@ const DashboardScreen = ({ data }) => {
                     channel={channel}
                     watched={watched}
                     playVideoAtIndex={playVideoAtIndex}
+                    isPortrait={isPortrait}
                 />
             </View>
-        </>
+        </View>
     );
 };
-const styles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 10
-    },
-    youTubeView: {
-        alignSelf: "stretch", height: 300
-    }
-});
+
 export default DashboardScreen;
