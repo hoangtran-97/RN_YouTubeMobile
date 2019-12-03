@@ -11,9 +11,8 @@ const DashboardScreen = ({ data }) => {
     const [channel, setChannel] = useState(data[0]);
     const [playing, setPlaying] = useState(channel.playlist);
     const [watched, setWatched] = useState([]);
-    const [userDidPause, setUserDidPause] = useState(false);
     const [isPortrait, setIsPortrait] = useState(true);
-    const { width, height } = Dimensions.get("window");
+    const { height } = Dimensions.get("window");
     playVideoAtIndex = (index) => {
         youTubeRef.current.playVideoAt(index);
     };
@@ -23,7 +22,7 @@ const DashboardScreen = ({ data }) => {
         newWatched.indexOf(videoId) === -1 ? newWatched.push(videoId) : null;
         setWatched([...newWatched]);
     };
-    onLayout = (e) => {
+    onLayout = () => {
         const { width, height } = Dimensions.get("window");
         width > height ? setIsPortrait(false) : setIsPortrait(true);
     };
@@ -59,18 +58,19 @@ const DashboardScreen = ({ data }) => {
                 loop
                 style={isPortrait ? styles.youtubePortrait : styles.youtubeLandscape}
                 onChangeState={(e) => {
-                    e.state === "paused" ? setUserDidPause(true) : (
-                        e.state === "playing" ? (
-                            setUserDidPause(false),
-                            youTubeRef.current.getVideosIndex().then((videosIndex) => {
-                                watched.indexOf(playing[videosIndex]) === -1
-                                    ? addToWatched(videosIndex)
-                                    : youTubeRef.current.nextVideo();
-                            }).catch((error) => {
-                                console.log(error);
-                            })
-                        ) : null
-                    );
+                    switch (e.state) {
+                    case "buffering":
+                        youTubeRef.current.getVideosIndex().then((videosIndex) => {
+                            watched.indexOf(playing[videosIndex]) === -1
+                                ? addToWatched(videosIndex)
+                                : youTubeRef.current.nextVideo();
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                        break;
+                    default:
+                        null;
+                    }
                 }}
             />
             <View style={styles.containerChannelVideo}>

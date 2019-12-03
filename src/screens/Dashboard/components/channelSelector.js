@@ -48,7 +48,7 @@ const ChannelSelector = ({
                     <Text style={styles.textHighlight}>Reset watched videos</Text>
                 </TouchableOpacity>
                 <FlatList
-                    contentContainerStyle={{ flexGrow: 1, paddingBottom: 130 }}
+                    contentContainerStyle={styles.containerFlatList}
                     data={data}
                     renderItem={({ item }) => (
                         <TouchableOpacity
@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     buttonReset: {
         marginVertical: 20
     },
+    containerFlatList: {
+        flexGrow: 1,
+        paddingBottom: 130
+    },
     image: {
         height: 40, width: 40
     },
@@ -103,6 +107,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "700"
     },
-    textHighlight: { alignSelf: "center", color: colors.highlight }
+    textHighlight: {
+        alignSelf: "center",
+        color: colors.highlight
+    }
 });
 export default ChannelSelector;
