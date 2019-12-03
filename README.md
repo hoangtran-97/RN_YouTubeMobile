@@ -45,6 +45,7 @@ To remedy this, a dedicated "Reset watched video" was added until a better solut
 * iPhone 11 Pro Max (simulator) (iOS 13.2)
 * iPhone 8 (simulator) (iOS 13.2)
 * iPhone SE (simulator) (iOS 13.2)
+* iPad Air (simulator) (iOS 13.2)
 
 
 ## Buil with:
