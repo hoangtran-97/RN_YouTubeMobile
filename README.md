@@ -38,7 +38,7 @@ The app dectects watched videos by pushing and comparing them to a "watched" arr
 Since the data is static, once the the array contained all the video provided by the static source, 
 the app will go into an endless loop.
 </br>
-To rememdy this, a dedicated "Reset watched video" was added until a better solution is found.
+To remedy this, a dedicated "Reset watched video" was added until a better solution is found.
 ## Tested on:
 * iPhone X (real device) (iOS 13.2)
 * iPhone 11 (simulator) (iOS 13.2)
