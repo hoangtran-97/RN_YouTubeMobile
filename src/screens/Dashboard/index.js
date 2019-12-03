@@ -29,6 +29,7 @@ const DashboardScreen = ({ data }) => {
     };
     const styles = StyleSheet.create({
         containerChannelVideo: {
+            flex: 1,
             paddingHorizontal: 10
         },
         containerLandscape: {
@@ -38,10 +39,11 @@ const DashboardScreen = ({ data }) => {
             width: "100%"
         },
         containerPortrait: {
-            flexDirection: "column"
+            flexDirection: "column",
+            flex: 1
         },
         youtubeLandscape: {
-            flex: 1,
+            flex: 2,
             height
         },
         youtubePortrait: {

@@ -18,7 +18,7 @@ const ChannelSelector = ({
         config: {
             duration: collapse ? 300 : 250,
             easing: BezierEasing(0.4, 0, 0.2, 1)
-        }
+        },
     });
     return (
         <>
@@ -38,7 +38,17 @@ const ChannelSelector = ({
                 />
             </TouchableOpacity>
             <AnimatedView style={animation}>
+                <TouchableOpacity
+                    style={styles.buttonReset}
+                    onPress={() => {
+                        setWatched([]);
+                        setCollapse(!collapse);
+                    }}
+                >
+                    <Text style={styles.textHighlight}>Reset watched videos</Text>
+                </TouchableOpacity>
                 <FlatList
+                    contentContainerStyle={{ flexGrow: 1, paddingBottom: 130 }}
                     data={data}
                     renderItem={({ item }) => (
                         <TouchableOpacity
@@ -58,13 +68,6 @@ const ChannelSelector = ({
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                <TouchableOpacity onPress={() => {
-                    setWatched([]);
-                    setCollapse(!collapse);
-                }}
-                >
-                    <Text style={styles.buttonReset}>Reset watched videos</Text>
-                </TouchableOpacity>
             </AnimatedView>
         </>
     );
@@ -89,7 +92,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         marginTop: 5
     },
-    buttonReset: { alignSelf: "center", color: colors.highlight, marginBottom: 10 },
+    buttonReset: {
+        marginVertical: 20
+    },
     image: {
         height: 40, width: 40
     },
@@ -97,6 +102,7 @@ const styles = StyleSheet.create({
         color: colors.text,
         fontSize: 16,
         fontWeight: "700"
-    }
+    },
+    textHighlight: { alignSelf: "center", color: colors.highlight }
 });
 export default ChannelSelector;

@@ -26,8 +26,8 @@ const VideoList = ({
                         <Thumbnail
                             url={`https://www.youtube.com/watch?v=${item}`}
                             showPlayIcon={false}
-                            imageWidth={200}
-                            imageHeight={150}
+                            imageWidth={isPortrait ? 200 : 150}
+                            imageHeight={isPortrait ? 150 : 100}
                             onPress={() => {
                                 playVideoAtIndex(index);
                             }}
@@ -42,10 +42,12 @@ const VideoList = ({
 };
 const styles = StyleSheet.create({
     containerLandscape: {
+        flexGrow: 1,
         paddingBottom: 200,
     },
     containerPortrait: {
-        paddingBottom: 300,
+        flexGrow: 1,
+        paddingBottom: 100
     },
     itemContainer: {
         alignItems: "center",
