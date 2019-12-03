@@ -14,6 +14,8 @@ const DashboardScreen = ({ data }) => {
     const [isPortrait, setIsPortrait] = useState(true);
     const { height } = Dimensions.get("window");
     playVideoAtIndex = (index) => {
+        const rewatchId = watched.indexOf(playing[index]);
+        rewatchId > -1 ? watched.splice(rewatchId, 1) : null;
         youTubeRef.current.playVideoAt(index);
     };
     addToWatched = (index) => {

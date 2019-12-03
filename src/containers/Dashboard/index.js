@@ -17,7 +17,7 @@ const channels = [{
     id: 3,
     name: "WTF",
     icon: "https://neverthink.tv/assets/images/fde01ee47dc02d83892c35c22f2efd81f52c37edc4f3651be40094a115c812fd.png",
-    playlist: ["ppboaxC8vWA", "5Cd4Ify3rnM", "Rm8K0LfBRbA"]
+    playlist: ["ppboaxC8vWA", "5Cd4Ify3rnM", "Rm8K0LfBRbA", "UFslJb-ZQ6A", "FxXlTaoCNus", "-LXr2YXDrzA"]
 }];
 
 class Dashboard extends Component {
