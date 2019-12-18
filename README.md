@@ -1,4 +1,4 @@
-# JuniorTask
+# YouTubeMobile
 React Native version of Neverthink app.
 only the iOS version works. 
 ## Getting started
@@ -48,7 +48,7 @@ To remedy this, a dedicated "Reset watched video" was added until a better solut
 * iPad Air (simulator) (iOS 13.2)
 
 
-## Buil with:
+## Built with:
 * [react-pring](https://www.react-spring.io/) - Spring-based animations.
 * [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) - Icon libary.
 * [react-native-thumbnail-video](https://github.com/lucasbento/react-native-thumbnail-video) - Youtube video thumbnail.
